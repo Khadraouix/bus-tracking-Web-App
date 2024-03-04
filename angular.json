@@ -11,11 +11,11 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:application",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/bus-tracking",
             "index": "src/index.html",
-            "browser": "src/main.ts",
+            "main": "src/main.ts",
             "polyfills": [
               "zone.js"
             ],
@@ -25,14 +25,30 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
-            ],
-            "scripts": [],
-            "server": "src/main.server.ts",
-            "prerender": true,
-            "ssr": {
-              "entry": "server.ts"
-            }
+              "node_modules/leaflet/dist/leaflet.css",
+              "node_modules/ngx-toastr/toastr.css",
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.css",
+              "src/assets/css/materialdesignicons.min.css",
+              "src/assets/css/vendor.bundle.base.css",
+              "src/assets/css/style.css",
+              "node_modules/leaflet-control-geocoder/dist/Control.Geocoder.css",
+              "node_modules/leaflet-search/dist/leaflet-search.src.css"
+          ],
+          "scripts": [
+              "node_modules/leaflet/dist/leaflet.js",
+              "node_modules/leaflet-search/dist/leaflet-search.src.js",
+              "node_modules/leaflet-control-geocoder/dist/Control.Geocoder.js",
+              "node_modules/leaflet-routing-machine/dist/leaflet-routing-machine.js",
+              "src/assets/js/vendor.bundle.base.js",
+              "src/assets/js/Chart.min.js",
+              "src/assets/js/jquery.cookie.js",
+              "src/assets/js/off-canvas.js", 
+              "src/assets/js/hoverable-collapse.js",
+              "src/assets/js/misc.js", 
+              "src/assets/js/dashboard.js",
+              "src/assets/js/todolist.js"
+          ]
           },
           "configurations": {
             "production": {
@@ -51,9 +67,12 @@
               "outputHashing": "all"
             },
             "development": {
+              "buildOptimizer": false,
               "optimization": false,
+              "vendorChunk": true,
               "extractLicenses": false,
-              "sourceMap": true
+              "sourceMap": true,
+              "namedChunks": true
             }
           },
           "defaultConfiguration": "production"
@@ -96,5 +115,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "d85c6264-b229-4726-8dde-8920604e67f6"
   }
 }
